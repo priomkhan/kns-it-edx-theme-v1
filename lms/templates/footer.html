@@ -1,0 +1,170 @@
+## mako
+<%!
+  from django.core.urlresolvers import reverse
+  from django.utils.translation import ugettext as _
+  from branding.api import get_footer
+%>
+<% footer = get_footer(is_secure=is_secure) %>
+<%namespace name='static' file='static_content.html'/>
+
+<head>
+  <!-- Add the Bootstrap library, unless it's already included from webpack -->
+  % if not uses_bootstrap:
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    % endif
+</head>
+
+<!-- % if uses_bootstrap: -->
+
+<section class="footer-main">
+  <div class="container-fluid wrapper-footer">
+    <footer>
+      <div class="row">
+
+        <div class="col-1">
+          <div class="wrapper-logo">
+            <p>
+              <a href="/">
+                <img alt="organization logo" src="${static.url('images/logo.png')}" height="50" alt="Home Page">
+              </a>
+            </p>
+          </div>
+        </div>
+        <div class="col-9">
+          
+        </div>
+        <div class="col-1">
+          ## Please leave this link and use one of the logos provided
+          ## The OpenEdX link may be hidden when this view is served
+          ## through an API to partner sites (such as marketing sites or blogs),
+          ## which are not technically powered by OpenEdX.
+          % if not hide_openedx_link:
+          <div class="footer-about-openedx justify-content-end">
+            <p>
+              <a href="https://docs.tutor.overhang.io" rel="noopener" target="_blank">
+                <img src="${static.url('images/tutor-logo.png')}" height="42" />
+              </a>
+            </p>
+          </div>
+          % endif
+        </div>
+        <div class="col-1">
+          ## Please leave this link and use one of the logos provided
+          ## The OpenEdX link may be hidden when this view is served
+          ## through an API to partner sites (such as marketing sites or blogs),
+          ## which are not technically powered by OpenEdX.
+          % if not hide_openedx_link:
+          <div class="footer-about-openedx justify-content-end">
+            <p>
+              <a href="${footer['openedx_link']['url']}" rel="noopener" target="_blank">
+                <img src="${static.url('images/openedx-logo.png')}" alt="${footer['openedx_link']['title']}" width="140" />
+              </a>
+            </p>
+          </div>
+          % endif
+        </div>
+          
+      </div>
+      <div class="row">
+
+        <div class="col-1">
+          <nav class="nav-legal" aria-label="${_('Legal')}">
+            <ul>
+              <li class="nav-legal-01">
+                <a href="/privacy">Privacy Policy</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="col-1">
+          <nav class="nav-legal" aria-label="${_('Legal')}">
+            <ul>
+              <li class="nav-legal-02">
+                <a href="/tos">Terms of Service</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="col-10">
+          
+        </div>
+          
+      </div>
+      <div class="row">
+
+        <div class="col">
+          <p class="copyright">
+            © 2020 KNS-IT-GROUP 
+        </p>
+        </div>
+
+      </div>
+    </footer>
+  </div>
+</section>
+
+<!-- % else:
+<div class="wrapper wrapper-footer">
+  <footer id="footer-openedx"
+    ## When rendering the footer through the branding API,
+    ## the direction may not be set on the parent element,
+    ## so we set it here.
+    % if bidi:
+      dir=${bidi}
+    % endif
+  >
+    <div class="colophon">
+      <div class="wrapper-logo">
+        <p>
+          <a href="/">
+            <img alt="organization logo" src="${static.url('images/logo.png')}" height="50" alt="Home Page">
+          </a>
+        </p>
+      </div>
+
+      ## Site operators: Please do not remove this paragraph! This attributes back to edX and makes your acknowledgement of edX's trademarks clear.
+      <p class="copyright">
+          © 2020 KNS-IT-GROUP 
+      </p>
+
+      <nav class="nav-legal" aria-label="${_('Legal')}">
+        <ul>
+          <li class="nav-legal-01">
+            <a href="/privacy">Privacy Policy</a>
+          </li>
+          <li class="nav-legal-02">
+            <a href="/tos">Terms of Service</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    
+      ## Please leave this link and use one of the logos provided
+      ## The OpenEdX link may be hidden when this view is served
+      ## through an API to partner sites (such as marketing sites or blogs),
+      ## which are not technically powered by OpenEdX.
+      % if not hide_openedx_link:
+      <div class="footer-about-openedx">
+        <p>
+          <a href="${footer['openedx_link']['url']}" rel="noopener" target="_blank">
+            <img src="${static.url('images/openedx-logo.png')}" alt="${footer['openedx_link']['title']}" width="140" />
+          </a>
+        </p>
+      </div>
+      % endif
+  </footer>
+</div> -->
+<!-- % endif -->
+
+
+% if include_dependencies:
+  <%static:js group='base_vendor'/>
+  <%static:css group='style-vendor'/>
+  <%include file="widgets/segment-io.html" />
+  <%include file="widgets/segment-io-footer.html" />
+% endif
+% if footer_css_urls:
+  % for url in footer_css_urls:
+    <link rel="stylesheet" type="text/css" href="${url}"></link>
+  % endfor
+% endif

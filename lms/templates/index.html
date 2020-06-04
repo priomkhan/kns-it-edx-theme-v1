@@ -1,0 +1,116 @@
+## mako
+<%inherit file="main.html" />
+<%namespace name='static' file='static_content.html'/>
+<%!
+from django.utils.translation import ugettext as _
+from django.core.urlresolvers import reverse
+%>
+
+
+<head>
+  <!-- Add the Bootstrap library, unless it's already included from webpack -->
+  % if not uses_bootstrap:
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    % endif
+</head>
+
+
+<main id="main" aria-label="Content" tabindex="-1">
+  <section class="home">
+    <header>
+      <div style="margin-bottom: 25px;" class="alert alert-success alert-dismissible fade show" role="alert">
+        <h4 class="alert-heading text-success">WELLCOME!</h4>
+        <p class="text-info">It Is A Bootstrap Demo Alert</p>
+        <hr>
+        <p class="mb-0 text-muted">Visit Developer's Website at: <a href="https://mskdev.com" target="_blank">MSKDEV.COM</a>.</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+  
+      <div class="outer-wrapper">
+        <div class="title">
+          <hgroup>
+            <h1>KNS IT  E-LEARNING PLATFORM</h1>
+            <p>Your Online Classroom</p>
+            <hr>
+            <div class="course-search">
+              <form method="get" action="/courses">
+               
+                <input class="search-input" name="search_query" type="text" placeholder="${_("Search for a course")}"></input>
+                
+                <button class="search-button" type="submit">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+              </form>
+            </div>
+          </hgroup>
+        </div>
+
+      </div>
+
+
+  
+    </header>
+    <section class="courses-container">
+      <section class="highlighted-courses">
+  
+        % if settings.FEATURES.get('COURSES_ARE_BROWSABLE'):
+          <section class="courses">
+              <ul class="courses-listing">
+              ## limiting the course number by using HOMEPAGE_COURSE_MAX as the maximum number of courses
+              %for course in courses[:settings.HOMEPAGE_COURSE_MAX]:
+                <li class="courses-listing-item">
+                  <%include file="course.html" args="course=course" />
+                </li>
+              %endfor
+              </ul>
+          </section>
+          ## in case there are courses that are not shown on the homepage, a 'View all Courses' link should appear
+          % if settings.HOMEPAGE_COURSE_MAX and len(courses) > settings.HOMEPAGE_COURSE_MAX:
+            <div class="courses-more">
+              <a class="courses-more-cta" href="${marketing_link('COURSES')}" > ${_("View all Courses")} </a>
+            </div>
+          % endif
+        % endif
+  
+      </section>
+    </section>
+  </section>
+</main>
+
+
+
+<section id="video-modal" class="modal home-page-video-modal video-modal">
+  <div class="inner-wrapper">
+    <%
+      youtube_video_id = 'xxxxxxx'
+    %>
+    <iframe title="YouTube Video" width="640" height="360" src="//www.youtube.com/embed/${youtube_video_id}?showinfo=0" frameborder="0" allowfullscreen></iframe>
+  </div>
+</section>
+
+<%block name="js_extra">
+   <script type="text/javascript">
+      $(window).load(function() {
+         if(getParameterByName('next')) {
+              $('#login').trigger("click");
+         }
+      })
+   </script>
+</%block>
+
+% if show_signup_immediately is not UNDEFINED:
+  ## NOTE: This won't work in production, because anonymous views are cached, so it will
+  ## show either with or without this extra js for 3 minutes at a time.
+<script type="text/javascript">
+  $(window).load(function() {$('#signup_action').trigger("click");});
+</script>
+% endif
+
+% if not uses_bootstrap:
+  <!-- McDaniel Oct-2018: add the Bootstrap javascript library, unless it's already included from webpack -->
+  ## xss-lint: disable=mako-invalid-js-filter
+  <script type="text/javascript" src="${static.url('common/js/vendor/bootstrap.bundle.js')}"></script>
+  <script src="https://kit.fontawesome.com/313a005779.js"></script>
+% endif

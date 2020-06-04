@@ -1,0 +1,291 @@
+footer .references {
+  text-align: right;
+}
+
+.global-header,
+.global-header.slim {
+    border-bottom: none;
+}
+
+.global-header .header-logo a .logo {
+  height: 50px;
+}
+
+.global-header.slim .wrapper-header .course-header {
+  width: auto;
+  max-width: 50%;
+}
+
+header.global {
+  nav {
+    padding-top: 6px;
+
+    .left {
+      display: none;
+    }
+
+    .user  {
+      margin-top: 14px;
+    }
+
+    .nav-courseware {
+      margin-top: 14px;
+    }
+  }
+}
+
+.container.about h3 {
+  margin: 2em 0 1em;
+}
+
+@media only screen and (max-width: 1024px) {
+  header.global h1.logo,
+  .wrapper-footer footer .wrapper-logo {
+    overflow: hidden;
+    width: 225px;
+  }
+}
+
+
+// Styles for EpodX CM
+
+img-right {
+  float: right;
+  margin: 0 0 10px 10px;
+}
+
+.img-dropshadow {
+  float: right;
+  margin: 0 0 10px 10px;
+  box-shadow: 5px 5px 5px #ccc;
+  border: 1px solid #ccc;
+}
+
+// Blue Box External Links
+
+.external-link[target="_blank"]:after {
+  font-family: 'FontAwesome';
+  content: " \f08e";
+}
+
+.infobox, .successbox, .warningbox, .errorbox, .validationbox {
+  border: 1px solid;
+  margin: 10px 0px;
+  padding:15px 10px 15px 50px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+}
+
+
+.infobox {
+  color: #00529B;
+  background-color: #BDE5F8;
+  background-image: url('/static/images/info.png');
+}
+
+// End Optional Blue Box External Link
+
+
+//  Blue Box Download Link
+
+.download-link[target="_blank"]:after {
+  font-family: 'FontAwesome';
+  content: " \f019";
+}
+
+// Blue Box Download Link
+
+
+// Key Terms Styles
+
+#navcontainer ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+#navcontainer ul li {
+  display: inline;
+  padding: 0 0 0 0;
+}
+
+
+#navcontainer ul li + li:before {
+  content: "|"; padding: 0 .5em;
+}
+
+#navcontainer ul li {
+  text-decoration: none;
+}
+
+dt {
+  font-size: 2em;
+  text-transform: uppercase;
+  padding: 0 0 0 5px;
+  font-weight: bold;
+}
+
+dl {
+  height: auto !important;
+  margin: 0 0 3em 7em;
+  padding: 10px;
+  width: 75%;
+  color: #000;
+}
+
+dd p {
+  margin: 4px 0px 10px;
+  line-height: 2.5;
+}
+
+dd a {
+  color: #000;
+}
+
+.back-to-top {
+  float: right;
+  margin-top: 3em;
+}
+
+//  End Key Terms Styles
+
+
+
+// Progress Bar
+
+.ui-progressbar {
+  position: relative;
+}
+
+.ui-widget-header {
+  border: 1px solid #ccc;
+  background: #5CB85C 50% 50% repeat-x;
+}
+
+.progress-label {
+  position: absolute;
+  left: 45%;
+  top: 4px;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 #fff;
+}
+
+
+// End Progress Bar
+
+
+
+// Expand - Collapse Links
+
+.toggle-box {
+  display: none;
+}
+
+.toggle-box + label {
+  font-size: 1em;
+  color: #00529B;
+  cursor: pointer;
+  display: block;
+  line-height: 21px;
+  margin-bottom: 25px;
+}
+
+.toggle-box + label + div {
+  display: none;
+  margin-bottom: 10px;
+  margin-left: 20px
+}
+
+.toggle-box:checked + label + div {
+  display: block;
+}
+
+.toggle-box + label:before {
+  font-family: 'FontAwesome';
+  content: " \f0fe" "\00a0";
+}
+
+.toggle-box:checked + label:before {
+  font-family: 'FontAwesome';
+  content: " \f146" "\00a0";
+}
+
+// END Expand - Collapse Links /
+
+
+// Navigate Green Text
+
+.green-text {
+  color: #339966;
+}
+
+xmp {
+  white-space: pre-wrap;       /* CSS 3 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+
+.register-btn, .sign-in-btn, a.help-link{
+       margin: 8px 15px 0 !important;
+       padding: 10px 20px !important;
+       box-shadow: none !important;
+       border: 0px solid !important;
+       background: white none !important;
+       //color: $epodx-main-color !important;
+       color: $knsit-main-color !important;
+       text-transform: none !important;
+       font-weight: 300 !important;
+       font-size: 1rem;
+       line-height: normal;
+
+       &:hover, &:focus, &:active {
+         background: none;
+         box-shadow: none;
+         color: white;
+       }
+     }
+     .nav-links {
+       .main .nav-tab a {
+          //color: $epodx-main-color !important;
+          color: $knsit-main-color !important;
+         .btn {
+           //color: $epodx-main-color !important;
+           color: $knsit-main-color !important;
+           padding: 7px 25px 19px;
+           font-weight: 400;
+           display: inline-block;
+           margin-bottom: -10px;
+           border-bottom: 4px hidden white;
+           cursor: pointer;
+           background-color: transparent;
+           border-style: hidden;
+         }
+         &.active {
+           border-bottom: 4px white;
+           border-bottom-style: solid;
+         }
+       }
+       .secondary {
+         .nav-item {
+           a, span {
+             //color: $epodx-main-color !important;
+             color: $knsit-main-color !important;
+             font-weight: 300;
+           }
+         }
+         .dropdown-user-menu {
+           border-radius: 4px;
+           box-shadow: 0 2px 2px 0 rgba(0,0,0,0.3);
+           border: 1px solid $border-color;
+           .dropdown-nav-item a {
+             color: black;
+           }
+         }
+       }
+     }
+
+
+
