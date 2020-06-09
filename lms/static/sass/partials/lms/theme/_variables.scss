@@ -76,6 +76,12 @@ $button-bg-hover-color: $action-secondary-bg;
 $forum-color-active-thread: $action-secondary-bg;
 
 
+// Theme fonts
+$font-family-title: Plex;
+$serif: Crimson;
+$f-sans-serif: Crimson, 'Open Sans','Helvetica Neue', Helvetica, Arial, sans-serif;
+
+
 // Theming overrides for sample theme
 $header-bg: rgba(151, 30, 30, 0.71);
 $footer-bg: rgba(151, 30, 30, 0.71);
@@ -106,3 +112,7 @@ $menu-secondary-color: #ff0800;
 
 // Initialize the Open edX Bootstrap theme
 @import 'edx-bootstrap/sass/open-edx/theme';
+
+
+
+

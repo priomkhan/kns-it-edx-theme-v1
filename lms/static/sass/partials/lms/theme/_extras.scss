@@ -113,6 +113,8 @@ header.global-header .nav-links .secondary .dropdown-user-menu {
     margin-bottom: 0;
   }
   header.course-profile .intro-inner-wrapper .intro .main-cta {
+    padding-top: 5px;
+    height: 300px;
     span.register {
       @extend %t-copy-base;
       padding: 10px 0;
