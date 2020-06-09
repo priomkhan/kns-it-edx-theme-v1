@@ -4,6 +4,7 @@
 $knsit-main-color: #2949ff;
 //$custom-color: $epodx-main-color;
 $custom-color: $knsit-main-color;
+$custom-body-color: #373a49;
 
 $custom-color-l1: tint($custom-color,20%);
 $custom-color-l2: tint($custom-color,40%);
@@ -102,13 +103,6 @@ $menu-primary-color: #272727;
 $menu-secondary-color: #ff0800;
 
 
-@mixin transition-ease {
-    transition: all 0.6s ease-in-out;
-}
-  
-@mixin transition-fast {
-    transition: all 0.01s ease-in-out;
-}
 
 // Initialize the Open edX Bootstrap theme
 @import 'edx-bootstrap/sass/open-edx/theme';
